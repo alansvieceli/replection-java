@@ -2,6 +2,7 @@ package br.com.alura.alurator;
 
 import java.util.Map;
 
+import br.com.alura.alurator.conversor.ConversorXML;
 import br.com.alura.alurator.protocolo.Request;
 import br.com.alura.alurator.reflexao.Reflexao;
 
@@ -22,7 +23,7 @@ public class Alurator {
 		String nomeMetodo = request.GetNomeMetodo();
 		Map<String, Object> params = request.getQueryParams();
 
-		Object retorno = new Reflexao()
+		Object objeto = new Reflexao()
                 .refleteClasse ( pacoteBase + '.' +  nomeControle )
                 .criaInstancia()
                 .getMetodo(nomeMetodo, params)
@@ -33,7 +34,9 @@ public class Alurator {
                 })
                 .invoca();
 
-		System.out.println(retorno);
+		//System.out.println(retorno);
+		
+		String retorno = new ConversorXML().converte(objeto);
 
 		return retorno;
 
