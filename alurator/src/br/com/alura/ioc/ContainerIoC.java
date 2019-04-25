@@ -58,34 +58,33 @@ public class ContainerIoC {
 
 	}
 
-	public void registra(Class<?> tipoFonte, Class<?> tipoDestino) {
+	public <T, K extends T> void registra(Class<T> tipoFonte, Class<K> tipoDestino) {
+		/*
+		 * boolean compativel = verificaCompatibilidade(tipoFonte, tipoDestino);
+		 * 
+		 * if (!compativel) { throw new ClassCastException("Não foi possível resolver "
+		 * + tipoFonte.getName() + " e " + tipoDestino.getName()); }
+		 */
 
-		boolean compativel = verificaCompatibilidade(tipoFonte, tipoDestino);
-		
-		if (!compativel) {
-			throw new ClassCastException("Não foi possível resolver " + tipoFonte.getName() + " e " + tipoDestino.getName());
-		}
-		
 		mapaDeTipos.put(tipoFonte, tipoDestino);
-		
 
 	}
 
 	private boolean verificaCompatibilidade(Class<?> tipoFonte, Class<?> tipoDestino) {
-		
-		/* no braço
-		boolean compativel;
-		
-		if (tipoFonte.isInterface()) {
-			compativel = Stream.of(tipoDestino.getInterfaces()).anyMatch(interfaceImpl -> interfaceImpl.equals(tipoFonte));
-		} else {
-			compativel = tipoDestino.getSuperclass().equals(tipoFonte) || tipoDestino.equals(tipoFonte);
-		}
-		
-		return compativel;
-		*/
-		
-		return tipoFonte.isAssignableFrom(tipoDestino); //api reflection
+
+		/*
+		 * no braço boolean compativel;
+		 * 
+		 * if (tipoFonte.isInterface()) { compativel =
+		 * Stream.of(tipoDestino.getInterfaces()).anyMatch(interfaceImpl ->
+		 * interfaceImpl.equals(tipoFonte)); } else { compativel =
+		 * tipoDestino.getSuperclass().equals(tipoFonte) ||
+		 * tipoDestino.equals(tipoFonte); }
+		 * 
+		 * return compativel;
+		 */
+
+		return tipoFonte.isAssignableFrom(tipoDestino); // api reflection
 	}
 
 }
