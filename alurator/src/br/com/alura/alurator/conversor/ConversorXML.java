@@ -29,15 +29,17 @@ public class ConversorXML {
 
 			} else {
 
-				String nomeClasse = classObjecto.getName();
-				String tagClasse = "";
 				NomeTagXML declaredAnnotation = classObjecto.getDeclaredAnnotation(NomeTagXML.class);
-				if (declaredAnnotation == null) {
-					tagClasse = nomeClasse;
-				} else {
-					tagClasse = declaredAnnotation.value();				}
-				
-				//NomeTagXml anotacao = nomeClasse.getDeclaredAnnotation(NomeTagXml.class)
+				String tagClasse = declaredAnnotation == null ? classObjecto.getName() : declaredAnnotation.value();
+
+				/*
+				 * String nomeClasse = classObjecto.getName(); String tagClasse = ""; NomeTagXML
+				 * declaredAnnotation = classObjecto.getDeclaredAnnotation(NomeTagXML.class); if
+				 * (declaredAnnotation == null) { tagClasse = nomeClasse; } else { tagClasse =
+				 * declaredAnnotation.value(); }
+				 */
+
+				// NomeTagXml anotacao = nomeClasse.getDeclaredAnnotation(NomeTagXml.class)
 
 				xmlBuilder.append("<" + tagClasse + ">");
 
@@ -56,7 +58,7 @@ public class ConversorXML {
 
 				xmlBuilder.append("</" + tagClasse + ">");
 			}
-			
+
 			return xmlBuilder.toString();
 
 		} catch (IllegalArgumentException | IllegalAccessException e) {

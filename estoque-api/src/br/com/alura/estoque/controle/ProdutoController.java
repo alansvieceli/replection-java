@@ -9,9 +9,9 @@ import br.com.alura.estoque.modelo.Produto;
 public class ProdutoController {
 	
 	private ProdutoDaoMock produtoDao;
-
-	public ProdutoController() {
-		produtoDao = new ProdutoDaoMock();
+	
+	public ProdutoController(ProdutoDaoMock produtoDao) {
+		this.produtoDao = produtoDao;		
 	}
 	
 	public List<Produto> lista() {
@@ -29,7 +29,6 @@ public class ProdutoController {
 							.filter(produto -> 
 								produto.getNome().toLowerCase().startsWith(nome.toLowerCase())
 								&& produto.getMarca().equalsIgnoreCase(marca)
-							)
-							.collect(Collectors.toList());
+				).collect(Collectors.toList());
 	}
 }
