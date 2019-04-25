@@ -6,8 +6,6 @@ import br.com.alura.alurator.conversor.ConversorXML;
 import br.com.alura.alurator.protocolo.Request;
 import br.com.alura.alurator.reflexao.ManipuladorObjeto;
 import br.com.alura.alurator.reflexao.Reflexao;
-import br.com.alura.estoque.dao.ProdutoDao;
-import br.com.alura.estoque.dao.ProdutoDaoMock;
 import br.com.alura.ioc.ContainerIoC;
 
 public class Alurator {
